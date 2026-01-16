@@ -8,14 +8,21 @@
         Title="MainWindow" Height="450" Width="800">
     <StackPanel> 
         
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Height="300">
-            <ItemsControl x:Name="ProductsList"  Width="600">
+        <ScrollViewer Height="400">
+            <ItemsControl x:Name="ProductsList"  Width="700">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="600">
-                            <TextBlock Text="{Binding ProductName}" />
-                            <TextBlock Text="{Binding Price}" />
-                            <TextBlock Text="{Binding Size}" />
+                        <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="700">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding ProductTypeId}" FontSize="14" FontWeight="Bold"/>
+                                <TextBlock Text=" | " FontSize="14" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ProductName}" Width="550" FontSize="14" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Price}" />
+                                <TextBlock Text=" (р)" />
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding ProductId, StringFormat=Артикул: {0}}" />
+                            <TextBlock Text="{Binding Size, StringFormat=Размеры: {0}}" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
