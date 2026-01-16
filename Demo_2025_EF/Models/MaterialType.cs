@@ -14,6 +14,7 @@ namespace Demo_2025_EF.Models
 
         [MaxLength(150)]
         public string? TypeName { get; set; }
+        public double? DefectPercent { get; set; }
 
         public ICollection<Material> Materials { get; set; }
     }

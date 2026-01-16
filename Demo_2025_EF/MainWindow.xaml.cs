@@ -9,6 +9,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Demo_2025_EF
 {
@@ -18,9 +21,19 @@ namespace Demo_2025_EF
     public partial class MainWindow : Window
     {
         DemoContext db = new DemoContext();
+
+        ObservableCollection<Product> products = new ObservableCollection<Product>();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            db.Products.Load();
+
+            products = db.Products.Local.ToObservableCollection();
+          
+
+            ProductsList.ItemsSource = products;
         }
     }
 }

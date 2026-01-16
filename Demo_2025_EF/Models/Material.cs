@@ -23,7 +23,7 @@ namespace Demo_2025_EF.Models
 
         public decimal? MaterialPrice { get; set; }
 
-        public double? DefectPercent { get; set; }
+        
 
         public int? SupplierId { get; set; }
         public Supplier? Supplier { get; set; }

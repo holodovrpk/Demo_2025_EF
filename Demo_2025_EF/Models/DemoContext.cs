@@ -26,7 +26,7 @@ namespace Demo_2025_EF.Models
             // Имя базы: BolnichkaBD
             // Trusted_Connection=True — используется Windows-авторизация.
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=Demo2025;Trusted_Connection=True;");
+                @"Server=NEXTOUCH313\SQLEXPRESS;Database=Demo2025;Trusted_Connection=True;TrustServerCertificate=True");
         }
 
         // Конструктор контекста.

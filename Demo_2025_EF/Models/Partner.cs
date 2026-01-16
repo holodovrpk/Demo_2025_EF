@@ -10,7 +10,7 @@ namespace Demo_2025_EF.Models
 {
     public class Partner
     {
-        [Key]
+
         public int PartnerId { get; set; }
 
         public int? PartnerTypeId { get; set; }
