@@ -1,4 +1,12 @@
-﻿<Window x:Class="Demo_2025_EF.MainWindow"
+﻿<!--
+    Главное окно приложения (MainWindow).
+
+    Важно: по вашей просьбе я НЕ вставляю комментарии внутрь тегов и их атрибутов
+    (то есть не трогаю строки вида <TextBlock Text="..." Width="..."/>),
+    чтобы XAML потом не ругался.
+-->
+
+<Window x:Class="Demo_2025_EF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,28 +14,97 @@
         xmlns:local="clr-namespace:Demo_2025_EF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="1000">
-    <StackPanel> 
-        
+
+    <!--
+        StackPanel — простой контейнер, который размещает элементы в одну линию
+        (по умолчанию вертикально).
+
+        Здесь он используется как основной "корневой" контейнер окна:
+        1) сверху — область со списком товаров (ScrollViewer + ItemsControl)
+        2) снизу — кнопка "Добавить товар"
+    -->
+    <StackPanel>
+
+        <!--
+            ScrollViewer добавляет прокрутку для содержимого.
+            Зачем он нужен:
+            - список товаров может быть длинным
+            - чтобы окно не растягивалось бесконечно, мы ограничиваем высоту
+              и позволяем прокручивать список внутри.
+        -->
         <ScrollViewer Height="400">
-            <ItemsControl x:Name="ProductsList"  Width="950">
+
+            <!--
+                ItemsControl — контрол для вывода списка элементов.
+
+                В отличие от ListBox/ListView:
+                - ItemsControl сам по себе не даёт выделение элемента и другие "списковые фишки"
+                - он просто "повторяет" шаблон (ItemTemplate) для каждого элемента ItemsSource.
+
+                x:Name="ProductsList" нужен, чтобы обратиться к нему из кода C#:
+                ProductsList.ItemsSource = products;
+            -->
+            <ItemsControl x:Name="ProductsList" Width="950">
+
+                <!--
+                    ItemTemplate определяет, КАК будет выглядеть каждый элемент списка.
+                    Для каждого Product из ItemsSource будет создаваться разметка из DataTemplate.
+                -->
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
+
+                        <!--
+                            Внешний StackPanel — "карточка товара".
+                            - Margin="5" даёт отступы вокруг карточки (чтобы карточки не слипались).
+                            - Background задаёт цвет фона карточки.
+                            - HorizontalAlignment="Left" + Width="950" фиксируют ширину карточки.
+                        -->
                         <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="950">
+
+                            <!--
+                                Внутренний StackPanel с Orientation="Horizontal"
+                                кладёт несколько TextBlock'ов в одну строку:
+                                [Тип] | [Название] [Цена] (р)
+                            -->
                             <StackPanel Orientation="Horizontal">
+
+                                <!-- Тип товара: берём из связанной сущности ProductType.TypeName -->
                                 <TextBlock Text="{Binding ProductType.TypeName}" Width="250" FontSize="14" FontWeight="Bold"/>
-                                <TextBlock Text=" | " FontSize="14" Width="50"  FontWeight="Bold"/>
+
+                                <!-- Разделитель между типом и названием -->
+                                <TextBlock Text=" | " FontSize="14" Width="50" FontWeight="Bold"/>
+
+                                <!-- Название товара -->
                                 <TextBlock Text="{Binding ProductName}" Width="550" FontSize="14" FontWeight="Bold"/>
+
+                                <!-- Цена (как есть, без форматирования) -->
                                 <TextBlock Text="{Binding Price}" />
+
+                                <!-- Валюта / обозначение рубля -->
                                 <TextBlock Text=" (р)" />
                             </StackPanel>
 
+                            <!--
+                                Дополнительные строки снизу карточки.
+                                StringFormat добавляет подпись, а {0} заменяется на значение свойства.
+                            -->
+
+                            <!-- Артикул (идентификатор товара) -->
                             <TextBlock Text="{Binding ProductId, StringFormat=Артикул: {0}}" />
+
+                            <!-- Размеры товара -->
                             <TextBlock Text="{Binding Size, StringFormat=Размеры: {0}}" />
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
+
+        <!--
+            Кнопка добавления товара.
+            Click="AddProduct_Click" — привязка к обработчику в MainWindow.xaml.cs.
+            При нажатии открывается ProductAddWindow, и при подтверждении — товар добавляется в коллекцию.
+        -->
         <Button Content="Добавить товар" Width="200" Click="AddProduct_Click"/>
 
     </StackPanel>

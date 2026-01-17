@@ -1,4 +1,13 @@
-﻿<Window x:Class="Demo_2025_EF.ProductAddWindow"
+﻿<!--
+    Окно добавления товара (ProductAddWindow).
+
+    По вашей просьбе:
+    - комментарии добавлены ТОЛЬКО между тегами
+    - внутрь атрибутов (Text="...", Binding и т.п.) я не лезу
+    - разметка остаётся валидной и не будет вызывать ошибок XAML
+-->
+
+<Window x:Class="Demo_2025_EF.ProductAddWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,24 +15,102 @@
         xmlns:local="clr-namespace:Demo_2025_EF"
         mc:Ignorable="d"
         Title="ProductAddWindow" Height="450" Width="600">
+
+    <!--
+        StackPanel — основной контейнер окна.
+        Элементы располагаются вертикально, один под другим.
+        Width="400" ограничивает ширину формы ввода,
+        чтобы поля выглядели аккуратно и не растягивались на всё окно.
+    -->
     <StackPanel Width="400">
+
+        <!-- Надпись для выбора типа товара -->
         <TextBlock Text="Тип товара"/>
-        <ComboBox x:Name="ListType" DisplayMemberPath="TypeName"               
-                              SelectedValuePath="ProductTypeId"
-                              SelectedValue="{Binding ProductTypeId}"/>
+
+        <!--
+            ComboBox для выбора типа товара.
+
+            ItemsSource задаётся из кода:
+            ListType.ItemsSource = db.ProductTypes.ToList();
+
+            DisplayMemberPath="TypeName"
+            - определяет, какое свойство объекта ProductType
+              будет отображаться пользователю в списке.
+
+            SelectedValuePath="ProductTypeId"
+            - указывает, какое свойство объекта ProductType
+              будет считаться "значением" выбранного элемента.
+
+            SelectedValue="{Binding ProductTypeId}"
+            - связывает выбранный тип товара с полем ProductTypeId
+              объекта Product (DataContext этого окна).
+        -->
+        <ComboBox x:Name="ListType"
+                  DisplayMemberPath="TypeName"
+                  SelectedValuePath="ProductTypeId"
+                  SelectedValue="{Binding ProductTypeId}"/>
+
+        <!-- Надпись для поля "Материал" -->
         <TextBlock Text="Материал"/>
+
+        <!--
+            TextBox для ввода идентификатора материала.
+            Значение напрямую привязывается к свойству MaterialId объекта Product.
+        -->
         <TextBox Text="{Binding MaterialId}"/>
+
+        <!-- Надпись для поля "Название товара" -->
         <TextBlock Text="Название"/>
+
+        <!--
+            TextBox для ввода названия товара.
+            Данные сразу записываются в Product.ProductName.
+        -->
         <TextBox Text="{Binding ProductName}"/>
+
+        <!-- Надпись для описания товара -->
         <TextBlock Text="Описание"/>
+
+        <!--
+            TextBox для ввода описания товара.
+            Обычно здесь можно добавить AcceptsReturn="True" и Height,
+            если описание должно быть многострочным.
+        -->
         <TextBox Text="{Binding Description}"/>
+
+        <!-- Надпись для минимальной цены -->
         <TextBlock Text="Мин цена"/>
+
+        <!--
+            TextBox для ввода минимальной цены.
+            Значение привязано к свойству MinPrice объекта Product.
+        -->
         <TextBox Text="{Binding MinPrice}"/>
+
+        <!-- Надпись для размеров товара -->
         <TextBlock Text="Размер"/>
+
+        <!--
+            TextBox для ввода размеров товара.
+            Например: "100x50x30".
+        -->
         <TextBox Text="{Binding Size}"/>
+
+        <!-- Надпись для цены товара -->
         <TextBlock Text="Цена"/>
+
+        <!--
+            TextBox для ввода цены товара.
+            Значение привязано к свойству Price объекта Product.
+        -->
         <TextBox Text="{Binding Price}"/>
 
+        <!--
+            Кнопка подтверждения добавления товара.
+            Click="Add_Click" вызывает обработчик в ProductAddWindow.xaml.cs,
+            который устанавливает DialogResult = true и закрывает окно.
+        -->
         <Button Content="Добавить" Click="Add_Click"/>
+
     </StackPanel>
 </Window>
