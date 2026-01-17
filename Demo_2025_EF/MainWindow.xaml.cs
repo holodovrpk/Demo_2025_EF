@@ -21,6 +21,7 @@ namespace Demo_2025_EF
     public partial class MainWindow : Window
     {
         DemoContext db = new DemoContext();
+        
 
         ObservableCollection<Product> products = new ObservableCollection<Product>();
 
@@ -28,12 +29,32 @@ namespace Demo_2025_EF
         {
             InitializeComponent();
 
-            db.Products.Load();
+            db.Products.Include(t => t.ProductType).Load();
 
             products = db.Products.Local.ToObservableCollection();
+
           
 
             ProductsList.ItemsSource = products;
+        }
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            Product p = new Product();
+
+            ProductAddWindow w = new ProductAddWindow() { DataContext = p};
+           
+            // w.DataContext = p;
+
+            if (w.ShowDialog() == true)
+            {
+                products.Add(p);
+                db.SaveChanges();
+            }
+
+
+        
+
         }
     }
 }

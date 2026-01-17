@@ -1,0 +1,29 @@
+﻿<Window x:Class="Demo_2025_EF.ProductAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo_2025_EF"
+        mc:Ignorable="d"
+        Title="ProductAddWindow" Height="450" Width="600">
+    <StackPanel Width="400">
+        <TextBlock Text="Тип товара"/>
+        <ComboBox x:Name="ListType" DisplayMemberPath="TypeName"               
+                              SelectedValuePath="ProductTypeId"
+                              SelectedValue="{Binding ProductTypeId}"/>
+        <TextBlock Text="Материал"/>
+        <TextBox Text="{Binding MaterialId}"/>
+        <TextBlock Text="Название"/>
+        <TextBox Text="{Binding ProductName}"/>
+        <TextBlock Text="Описание"/>
+        <TextBox Text="{Binding Description}"/>
+        <TextBlock Text="Мин цена"/>
+        <TextBox Text="{Binding MinPrice}"/>
+        <TextBlock Text="Размер"/>
+        <TextBox Text="{Binding Size}"/>
+        <TextBlock Text="Цена"/>
+        <TextBox Text="{Binding Price}"/>
+
+        <Button Content="Добавить" Click="Add_Click"/>
+    </StackPanel>
+</Window>

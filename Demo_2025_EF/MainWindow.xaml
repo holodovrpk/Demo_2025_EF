@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo_2025_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="1000">
     <StackPanel> 
         
         <ScrollViewer Height="400">
-            <ItemsControl x:Name="ProductsList"  Width="700">
+            <ItemsControl x:Name="ProductsList"  Width="950">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="700">
+                        <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="950">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding ProductTypeId}" FontSize="14" FontWeight="Bold"/>
-                                <TextBlock Text=" | " FontSize="14" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding ProductType.TypeName}" Width="250" FontSize="14" FontWeight="Bold"/>
+                                <TextBlock Text=" | " FontSize="14" Width="50"  FontWeight="Bold"/>
                                 <TextBlock Text="{Binding ProductName}" Width="550" FontSize="14" FontWeight="Bold"/>
                                 <TextBlock Text="{Binding Price}" />
                                 <TextBlock Text=" (р)" />
@@ -28,7 +28,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-
+        <Button Content="Добавить товар" Width="200" Click="AddProduct_Click"/>
 
     </StackPanel>
 </Window>
