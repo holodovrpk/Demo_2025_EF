@@ -106,5 +106,24 @@ namespace Demo_2025_EF
             }
 
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as Button).DataContext is Product p)
+            {
+                products.Remove(p);
+                db.SaveChanges();
+            }
+        }
+
+        private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Тут будет редактирование");
+        }
     }
 }

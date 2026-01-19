@@ -94,6 +94,11 @@
 
                             <!-- Размеры товара -->
                             <TextBlock Text="{Binding Size, StringFormat=Размеры: {0}}" />
+
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                <Button Content="✏️" Click="Edit_Click" Margin="0,0,0,5"/>
+                                <Button Content="🗑️" Click="Del_Click" Margin="5,0,20,5"/>
+                            </StackPanel>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
