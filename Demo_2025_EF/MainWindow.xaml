@@ -13,7 +13,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo_2025_EF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="500" Width="1000">
 
     <!--
         StackPanel — простой контейнер, который размещает элементы в одну линию
@@ -59,7 +59,7 @@
                             - Background задаёт цвет фона карточки.
                             - HorizontalAlignment="Left" + Width="950" фиксируют ширину карточки.
                         -->
-                        <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="950">
+                        <StackPanel Margin="5" Background="#BBD9B2" HorizontalAlignment="Left" Width="950" MouseDown="StackPanel_MouseDown">
 
                             <!--
                                 Внутренний StackPanel с Orientation="Horizontal"
@@ -111,6 +111,7 @@
             При нажатии открывается ProductAddWindow, и при подтверждении — товар добавляется в коллекцию.
         -->
         <Button Content="Добавить товар" Width="200" Click="AddProduct_Click"/>
-
+        <Button Content="Расчитать материалы" Width="200" Click="Calc_Click"/>
+        
     </StackPanel>
 </Window>

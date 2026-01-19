@@ -109,7 +109,17 @@ namespace Demo_2025_EF
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-
+            if ((sender as Button).DataContext is Product p)
+            {
+                ProductAddWindow w = new ProductAddWindow();
+                w.DataContext = p;
+                
+                if (w.ShowDialog() == true)
+                {
+                    db.SaveChanges();
+                }
+                
+            }
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
@@ -123,7 +133,23 @@ namespace Demo_2025_EF
 
         private void StackPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Тут будет редактирование");
+            if ((sender as StackPanel).DataContext is Product p)
+            {
+                ProductAddWindow w = new ProductAddWindow();
+                w.DataContext = p;
+
+                if (w.ShowDialog() == true)
+                {
+                    db.SaveChanges();
+                }
+
+            }
+        }
+
+        private void Calc_Click(object sender, RoutedEventArgs e)
+        {
+            CalcWindow w = new CalcWindow();
+            w.ShowDialog();
         }
     }
 }

@@ -78,5 +78,10 @@ namespace Demo_2025_EF
             // Сам объект Product заполняется через DataContext и привязки в XAML.
             DialogResult = true;
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult=false;
+        }
     }
 }

@@ -1,0 +1,34 @@
+﻿<Window x:Class="Demo_2025_EF.CalcWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo_2025_EF"
+        mc:Ignorable="d"
+        Title="CalcWindow" Height="450" Width="800">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="10">
+                <TextBlock Text="Выберите товар для производства:"/>
+                <ComboBox x:Name="ListProduct"
+                    DisplayMemberPath="ProductName"
+                    SelectedValuePath="ProductId"
+                    SelectionChanged="ListProduct_SelectionChanged"
+                    />
+                <TextBlock Text="Размер: " />
+                <TextBlock x:Name="txtSize"/>
+
+                <TextBlock Text="Коэф. товара: " />
+                <TextBlock x:Name="txtKoef"/>
+            </StackPanel>
+            <StackPanel Margin="10">
+                <TextBlock Text="Выберите материал для производства:"/>
+                <ComboBox x:Name="ListMaterial"
+                    DisplayMemberPath="MaterialName"
+                    SelectedValuePath="MaterialId"
+    />
+                
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

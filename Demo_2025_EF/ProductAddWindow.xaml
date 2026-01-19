@@ -110,7 +110,8 @@
             Click="Add_Click" вызывает обработчик в ProductAddWindow.xaml.cs,
             который устанавливает DialogResult = true и закрывает окно.
         -->
-        <Button Content="Добавить" Click="Add_Click"/>
+        <Button  Content="Добавить" Click="Add_Click"/>
+        <Button Content="Назад" Click="Back_Click"/>
 
     </StackPanel>
 </Window>
